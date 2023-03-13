@@ -1,10 +1,16 @@
+import sys
 import pandas as pd
 
-def process_file(texts):
-    pairs = []
-    for text in texts:
-        lines = text.splitlines()
-        content = list(zip(lines[:-1], line[1:]))
-        pairs.extend(content)
-    return pairs
-    
+df = pd.read_csv(sys.argv[1])
+sentences, next_sentences = [], []
+for idx, row in df.iterrows():
+    lines = row.content.splitlines()
+    sentences.extend(lines[:-1])
+    next_sentences.extend(lines[1:])
+
+wdf = pd.DataFrame({
+    'id': list(range(len(sentences))),
+    'sentence': sentences,
+    'next_sentence': next_sentences
+})
+wdf.to_csv(sys.argv[2], index=False)

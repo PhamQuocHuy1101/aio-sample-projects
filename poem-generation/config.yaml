@@ -1,0 +1,17 @@
+train_df: ../dataset/poem/train.csv
+val_df: ../dataset/poem/val.csv
+
+model:
+  d_modeld: 128
+  nheadd: 4
+  num_encoder_layersd: 4
+  num_decoder_layersd: 4
+  dim_feedforwardd: 512
+  dropoutd: 0.1
+
+# train
+batch_size: 32
+epochs: 100
+lr: 0.001
+pct_start: 0.1
+ckpt_path: ./ckpt/poem.pt
